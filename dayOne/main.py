@@ -4,17 +4,29 @@ import re
 
 REGEX=r"one|two|three|four|five|six|seven|eight|nine"
 
-# def replace(x: str):
-#     x = x.replace("nine", "9")
-#     x = x.replace("eight", "8")
-#     x = x.replace("seven", "7")
-#     x = x.replace("six", "6")
-#     x = x.replace("five", "5")
-#     x = x.replace("four", "4")
-#     x = x.replace("three", "3")
-#     x = x.replace("two", "2")
-#     x = x.replace("one", "1")
-#     return x
+def replace(x):
+
+    for n, char in enumerate(x):
+        if char == "nine":
+            x[n] = "9"
+        if char == "eight":
+            x[n] = "8"
+        if char == "seven":
+            x[n] = "7"
+        if char == "six":
+            x[n] = "6"
+        if char == "five":
+            x[n] = "5"
+        if char == "four":
+            x[n] = "4"
+        if char == "three":
+            x[n] = "3"
+        if char == "two":
+            x[n] = "2"
+        if char == "one":
+            x[n] = "1"
+    
+    return x
 
 def main():
     
@@ -23,11 +35,14 @@ def main():
         for x in f.readlines():
             x = x.strip()
             numbers = re.findall(f"[0-9]+|{REGEX}", x)
+            numbers = [x.strip() for x in numbers]
+            numbers = replace(numbers)
             numbers = "".join(numbers)
-            # numbers = replace(numbers)
-            # val = int(numbers[0]) * 10 + int(numbers[-1])
-            # sum += val
-            print(f"{x}: {numbers}")
+            firstNum = numbers[0]
+            # lastNum = numbersBackwards[0]
+            val = int(firstNum) * 10 + int(lastNum)
+            sum += val
+            print(f"{x}: {numbers}: {val}")
 
 
         print(sum)
